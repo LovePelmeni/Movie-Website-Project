@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ADMIN_LOGIN = ['Joma']
-# ADMIN_PASSWORD = 'pbkdf2_sha256$30000$Vo0VlMnkR4Bk$qEvtdyZRWTcOsCnI/oQ7fVOu1XAURIZYoOZ3iq8Dr4M='
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -160,10 +160,6 @@ WSGI_APPLICATION = 'MovieProject.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 
 'default': {
 'ENGINE': 'django.db.backends.postgresql_psycopg2',
