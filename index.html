@@ -1,0 +1,101 @@
+{% extends 'movie/base.html' %}
+{% load static %}
+{{ title }}
+
+
+{{ banner }}
+
+
+{% block genres %}
+
+{% for genre in genres %}
+
+    {% if genre %}
+         <a class="dropdown-item" href="{% url 'movie:genres' genre_name=genre.name %}">{{ genre.name }}</a>
+    {% endif %}
+
+{% endfor %}
+
+{% endblock %}
+
+
+{% block notifications %}
+
+{% for notification in notifications %}
+
+    {% if notification %}
+         <a class="dropdown-item" href="#">{{ notification.message }}</a>
+    {% endif %}
+
+{% endfor %}
+
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="all">
+		<input checked type="radio" name="respond" id="desktop">
+			<article id="slider">
+					<input checked type="radio" name="slider" id="switch1">
+					<input type="radio" name="slider" id="switch2">
+					<input type="radio" name="slider" id="switch3">
+					<input type="radio" name="slider" id="switch4">
+					<input type="radio" name="slider" id="switch5">
+				<div id="slides">
+					<div id="overflow">
+						<div class="image">
+							<article><img src="{% static 'images/slider1.jpg' %}"></article>
+							<article><img src="{% static 'images/slider2.jpg' %}"></article>
+							<article><img src="{% static 'images/slider3.jpg' %}"></article>
+							<article><img src="{% static 'images/slider4.jpg' %}"></article>
+							<article><img src="{% static 'images/slider5.jpg' %}"></article>
+						</div>
+					</div>
+				</div>
+				<div id="controls">
+					<label for="switch1"></label>
+					<label for="switch2"></label>
+					<label for="switch3"></label>
+					<label for="switch4"></label>
+					<label for="switch5"></label>
+				</div>
+				<div id="active">
+					<label for="switch1"></label>
+					<label for="switch2"></label>
+					<label for="switch3"></label>
+					<label for="switch4"></label>
+					<label for="switch5"></label>
+				</div>
+			</article>
+	</div>
+
+
+<div class="container movie">
+
+{% for movie in queryset %}
+
+    {% if movie %}
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ movie.get_movie_logo_url }}" alt="">
+        <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+
+            <p class="card-text">{{movie.year}}, {{movie.country }}</p>
+            <p class="card-text">Genre:{{movie.genre.name}}</p>
+			<p class="card-text">Liked_by {{ movie.get_count_likes }} users</p>
+
+            <a href="{% url 'movie:single_movie' genre_name=movie.genre.name movie_title=movie.title %}" class="btn btn-primary" type="button">More</a>
+			<a href="{% url 'movie:get_reviews' movie_title=movie.title  %}" class="btn btn-primary" type="button">Review: {{ movie.get_count_reviews }}</a>
+			<a href="{% url 'movie:like_or_cancel' movie_title=movie.title %}" style="background:red" class="btn btn-primary" type="button">Like</a>
+        </div>
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
