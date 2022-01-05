@@ -1,7 +1,4 @@
 # Movie-Website-Project
-<h1>Movie Website Project</h1>
-
-
 
 #Heading 
 
