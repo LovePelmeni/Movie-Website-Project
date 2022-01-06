@@ -36,7 +36,7 @@ import logging
 sign_up_done = dispatch.Signal()
 updated_profile = dispatch.Signal()
 
-valid_request_codes = [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210]
+valid_request_codes = [code for code in range(200, 211)]
 
 logger = logging.getLogger(__name__)
 
