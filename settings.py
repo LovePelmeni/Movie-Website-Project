@@ -55,12 +55,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': os.path.join(BASE_DIR, 'movie_cache'),
-#     }
-# }
+
 SUPPORT_EMAIL = os.getenv('SUPPORT_EMAIL')
 
 EMAIL_USE_TLS = True
@@ -131,8 +126,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'movie.middleware.Is_blocked_middleware.IsBlockedMiddleware',
-    # 'movie.middleware.IP_valid_middleware.ValidIPMiddleware'
+    'movie.middleware.Is_blocked_middleware.IsBlockedMiddleware',
+    'movie.middleware.IP_valid_middleware.ValidIPMiddleware'
  ]
 
 ROOT_URLCONF = 'MovieProject.urls'
