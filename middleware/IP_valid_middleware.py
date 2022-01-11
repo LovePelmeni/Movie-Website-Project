@@ -5,9 +5,7 @@ from django.utils.deprecation import *
 
 class ValidIPMiddleware(MiddlewareMixin):
 
-    def __init__(self, get_response):
-        self.get_response = get_response
-        self.allowed_ip_list = ['127.0.0.1']
+    allowed_ip_list = ['127.0.0.1']
 
     def __call__(self, request):
         response = self.get_response(request)
