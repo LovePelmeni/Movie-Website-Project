@@ -1,7 +1,9 @@
 from django.http import HttpResponseForbidden
+from django.core.exceptions import *
+from django.utils.deprecation import *
 
 
-class ValidIPMiddleware(object):
+class ValidIPMiddleware(MiddlewareMixin):
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -16,7 +18,7 @@ class ValidIPMiddleware(object):
         current_ip = request.META.get('REMOTE_ADDR')
 
         if current_ip not in self.allowed_ip_list:
-            return HttpResponseForbidden('You have a forbidden IP ADDRESS')
+            raise PermissionDenied('You are using invalid IP Address for this website')
 
         else:
             return None
