@@ -7,6 +7,7 @@ from datetime import datetime
 from .models import CustomUser
 
 from django.core.exceptions import *
+from django.utils.deprecation import *
 
 class IsBlockedMiddleware(MiddlewareMixin):
 
