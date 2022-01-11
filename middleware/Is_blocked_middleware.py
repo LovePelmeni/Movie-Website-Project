@@ -4,12 +4,11 @@ from django.contrib.auth import logout
 from django.http import HttpResponseForbidden
 from django.shortcuts import render
 from datetime import datetime
-from MovieProject.movie.models import CustomUser
+from .models import CustomUser
 
-class IsBlockedMiddleware(object):
+from django.core.exceptions import *
 
-    def __init__(self, get_response):
-        self.get_response = get_response
+class IsBlockedMiddleware(MiddlewareMixin):
 
     def __call__(self, request):
         response = self.get_response(request)
@@ -31,7 +30,7 @@ class IsBlockedMiddleware(object):
                     return None
 
                 else:
-                    return HttpResponseForbidden(f'You are blocked on this website {datetime.now().day + 1} of current month')
+                    raise PermissionDenied(f'You are blocked on this website {datetime.now().day + 1} of current month')
 
             else:
                 return None
